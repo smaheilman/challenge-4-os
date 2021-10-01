@@ -1,4 +1,4 @@
-var highScoreEl = document.querySelector(".high-scores");
+var highScoreEl = document.querySelector("#highScores");
 var timerEl = document.getElementById("timer");
 var startBtn = document.getElementById("startBtn");
 var questionEl = document.getElementById("question");
@@ -18,6 +18,15 @@ var submitEl = document.getElementById("submit")
 var initialArr = [];
 var nameEl = document.getElementById("name");
 
+var startPage = function () {
+    document.getElementById("initials").style.display = "none";
+    document.querySelector("#submit").style.display = "none";
+    document.querySelector(".questions").style.display = "none";
+    document.querySelector("#highScores").style.display = "none";
+    document.querySelector("#startPage").style.display = "block";
+    document.querySelector("#startBtn").style.display = "block";
+}
+
 var displayCorrect = function(){
 correctEl.textContent = "Correct :)";
 score = score +2;
@@ -29,13 +38,16 @@ var displayIncorrect = function (){
     score--;
 }
 
-
 var saveInitials = function () {
     var initialInput = document.querySelector("input[name='initial'").value;
     console.log(initialInput);
-    initialArr.appendChild(initialInput);
+    initialArr.push(initialInput);
     localStorage.setItem("initials", JSON.stringify(initialArr));
+    document.querySelector(".scores");
+        appendChild("initialInput").text().trim();
 }
+
+
 
 const quizQuestions = {
     question1:"1. What symbol is used to create comments in javaScript?",
@@ -51,27 +63,27 @@ const quizQuestions = {
     d2: "4. In the middle of the document",
 
     question3: "3. What surrounds an array in javaScript?",
-    a3:"||",
-    b3:"[]",
-    c3:"''",
-    d3:"<>",
+    a3:"1. ||",
+    b3:"2. []",
+    c3:"3. ''",
+    d3:"4. <>",
 
     question4: "4. What language is often used mainly to style a website?",
-    a4: "HTML",
-    b4: "CSS",
-    c4: "javaScript",
-    d4: "python",
+    a4: "1. HTML",
+    b4: "2. CSS",
+    c4: "3. javaScript",
+    d4: "4. python",
 
     question5: "5. A common tool used to store and share remote repositories.",
-    a5: "gitHub",
-    b5: "Slack",
-    c5: "Stack Overflow",
-    d5: "VS Code"
+    a5: "1. gitHub",
+    b5: "2. Slack",
+    c5: "3. Stack Overflow",
+    d5: "4. VS Code"
 
 }
 
 var timeUp = function() {
- questionEl.textContent = "TIME IS UP!";
+ questions.textContent = "TIME IS UP!";
  console.log("Times up");
 }
 
@@ -108,6 +120,7 @@ var addScore = function () {
         event.preventDefault()
     });
     document.querySelector("#submit").addEventListener("click", saveInitials);
+    document.querySelector("#hSBtn").addEventListener("click", highScores);
 }
 
 var displayQuestion1 = function(){
@@ -126,6 +139,8 @@ var displayQuestion1 = function(){
     answer3El.addEventListener("click", displayQuestion2);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion2);
+
+
 }
 
 var displayQuestion2 = function () {
@@ -144,6 +159,7 @@ var displayQuestion2 = function () {
     answer3El.addEventListener("click", displayQuestion3);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion3);
+
 }
 
 var displayQuestion3 = function () {
@@ -162,6 +178,8 @@ var displayQuestion3 = function () {
     answer3El.addEventListener("click", displayQuestion4);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion4);
+
+
 }
 
 var displayQuestion4 = function () {
@@ -179,6 +197,8 @@ var displayQuestion4 = function () {
     answer3El.addEventListener("click", displayQuestion5);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion5);
+
+    
 }
 
 var displayQuestion5 = function () {
@@ -196,6 +216,8 @@ var displayQuestion5 = function () {
     answer3El.addEventListener("click", addScore);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", addScore);
+
+    
 }
 
 var start = function () {
@@ -203,11 +225,23 @@ var start = function () {
     timer();
     document.getElementById("startPage").style.display = "none";
     document.querySelector(".questions").style.display = "block";
+    document.querySelector("#startBtn").style.display = "none";
+}
+
+var highScores = function () {
+    document.querySelector("#highScores").style.display = "block";
+    document.querySelector("#startPage").style.display = "none";
+    document.querySelector(".questions").style.display = "none";
+    document.querySelector("#startBtn").style.display = "none";
+    document.querySelector("#close").addEventListener("click", startPage);
+    console.log("hi");
 }
 
 document.getElementById("initials").style.display = "none";
 document.querySelector("#submit").style.display = "none";
 document.querySelector(".questions").style.display = "none";
+document.querySelector("#highScores").style.display = "none";
 console.log(score);
+document.querySelector("#hSBtn").addEventListener("click", highScores);
 
 document.querySelector("#startBtn").addEventListener("click", start)

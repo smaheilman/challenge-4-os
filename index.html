@@ -9,20 +9,29 @@
 </head>
 <body>
     <header>
-      <h2>High Scores</h2>      
-      <h2 id="timer"></h2>
+       <h2 id="timer"></h2>
+       <h2 id="hS"><button id= "hSBtn">View High Scores</button></h2>
+      <div id="highScores">
+          <h2>High Scores</h2>
+          <li class= "scores"></li>
+          <button id="close">Close Scores</button>
+      </div>      
     </header>
     <main>
         <div id="startPage">
-        <h2 id="quizHeader">Here is a quiz</h2>
-            <p>get answer right get 5 points</p>
+        <h2 id="quizHeader">Coding Quiz Challenge</h2>
+            <p>For every correct answer you get 5 points will be added to your score! For every incorrect answer you will lose 2 points and 3 seconds will be deducted from the timer!
+            </p>
         </div>
         <div class="questions"> 
-            <p id="question"></p> 
-            <button id="answer1" class="answer"></button>
-            <button id="answer2" class= "answer"></button>
-            <button id="answer3" class= "answer"></button>
-            <button id="answer4" class="answer"></button>
+          
+            <div class="qstyle">
+                <p id="question"></p> 
+                <button id="answer1" class="answer"></button>
+                <button id="answer2" class= "answer"></button>
+                <button id="answer3" class= "answer"></button>
+                <button id="answer4" class="answer"></button>
+            </div>
         </div>
        <button id="startBtn">Start!</button> 
        <div class="right">

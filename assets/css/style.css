@@ -1,3 +1,106 @@
 #timer{
     color: purple;
+    float: right;
+    margin-top: 0;
+    display: inline;
+}
+
+#hSBtn{
+    border: none;
+    background-color: white;
+    color: plum;
+    font-size: 24px;
+}
+
+#startPage{
+    text-align: center;
+}
+
+#startPage p{
+    font-size: 20px;
+    color: slategrey;
+}
+#quizHeader{
+    color: rebeccapurple;
+}
+
+#startBtn{
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    border: none;
+    background-color: violet;
+    color: white;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+   
+}
+
+.questions{
+    display: inline;
+    float: center;
+    font-size: 28px;
+}
+
+#question{
+    color: rebeccapurple;
+    font-size: 32px;
+    text-align: center;
+}
+
+.answer{
+    border: none;
+    background-color: rebeccapurple;
+    color: white;
+   display: block;
+  
+   height: 60px;
+   width: 300px;
+}
+
+#answer1, #answer2, #answer3, #answer4{
+    padding: 20px 20px 20px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.qstyle{
+    display: inline-block;
+    text-align: center;
+    margin-left: 500px;
+    border-bottom: slategrey 2px solid;
+}
+
+.right{
+   text-align: center;
+    font-size: 32px;
+    color: slategray;
+}
+
+#name{
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    font-size: 36px;
+    padding: 25px 25px 25px 25px;
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
+#submit{
+    margin-left: 25px;
+    border: none;
+    background-color: violet;
+    color: white;
+    height: 45px;
+    width: 200px;
+    border-radius: 15px;
+}
+
+#initials{
+    height: 55px;
+    width: 225px;
+    border-radius: 5px;
+    font-size: 24px;
 }
