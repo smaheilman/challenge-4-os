@@ -13,8 +13,12 @@
       <h2 id="timer"></h2>
     </header>
     <main>
-        <div class="questions">
-            <p id="question"></p>
+        <div id="startPage">
+        <h2 id="quizHeader">Here is a quiz</h2>
+            <p>get answer right get 5 points</p>
+        </div>
+        <div class="questions"> 
+            <p id="question"></p> 
             <button id="answer1" class="answer"></button>
             <button id="answer2" class= "answer"></button>
             <button id="answer3" class= "answer"></button>
@@ -22,10 +26,14 @@
         </div>
        <button id="startBtn">Start!</button> 
        <div class="right">
-           <p id="correct"></p>
-           <p id="incorrect"></p>
+           <p class="correct incorrect"></p>
        </div>  
-       <div id="score-page"></div>
+       <div id="score-page">
+           <form id="name">
+               <input type="text" name="initial" id="initials" required="" placeholder="Please enter intials">
+               <input type="submit" value="submit" id="submit">
+           </form>
+       </div>
     </main>
 
     <script src="assets/js/script.js"></script>

@@ -6,26 +6,35 @@ var answer1El = document.getElementById("answer1");
 var answer2El = document.getElementById("answer2");
 var answer3El = document.getElementById("answer3");
 var answer4El = document.getElementById("answer4");
-var correctEl = document.getElementById("correct");
-var incorrectEl = document.getElementById("incorrect");
+var correctEl = document.querySelector(".correct");
+var incorrectEl = document.querySelector(".incorrect");
 var answerEl = document.querySelector(".answer");
 var rightEl = document.querySelector(".right");
 var scoreEl = document.getElementById("score-page");
+var questions = document.querySelector(".questions");
 var score= 0; 
+var initialEl = document.getElementById("initials");
+var submitEl = document.getElementById("submit")
+var initialArr = [];
+var nameEl = document.getElementById("name");
 
 var displayCorrect = function(){
 correctEl.textContent = "Correct :)";
-score+2;
+score = score +2;
+console.log(score);
 }
 
 var displayIncorrect = function (){
     incorrectEl.textContent = "Incorrect :(";
-    timer-3;
     score--;
 }
 
-var addScore = function () {
-    scoreEl.textContent = "You scored " + score;
+
+var saveInitials = function () {
+    var initialInput = document.querySelector("input[name='initial'").value;
+    console.log(initialInput);
+    initialArr.appendChild(initialInput);
+    localStorage.setItem("initials", JSON.stringify(initialArr));
 }
 
 const quizQuestions = {
@@ -80,6 +89,25 @@ function timer() {
             timeUp();
         }
     }, 1000);
+}
+
+var stopTimer = function () {
+    clearTimeout(timer);
+}
+
+var addScore = function () {
+    questions.textContent = "You scored " + score;
+    document.querySelector(".right").style.display = "none";
+    document.getElementById("initials").style.display = "block";
+    document.querySelector("#startBtn").style.display = "none";
+    document.querySelector("#timer").style.display = "none";
+    submitEl.addEventListener("click", saveInitials);
+    document.querySelector("#submit").style.display = "block";
+    stopTimer;
+    document.querySelector("#submit").addEventListener("click", function(event){
+        event.preventDefault()
+    });
+    document.querySelector("#submit").addEventListener("click", saveInitials);
 }
 
 var displayQuestion1 = function(){
@@ -161,14 +189,25 @@ var displayQuestion5 = function () {
     answer4El.textContent = (quizQuestions.d5);
 
     answer1El.addEventListener("click", displayCorrect);
-    answer1El.addEventListener("click", displayQuestion3);
+    answer1El.addEventListener("click", addScore);
     answer2El.addEventListener("click", displayIncorrect);
-    answer2El.addEventListener("click", displayQuestion3);
+    answer2El.addEventListener("click", addScore);
     answer3El.addEventListener("click", displayIncorrect);
-    answer3El.addEventListener("click", displayQuestion3);
+    answer3El.addEventListener("click", addScore);
     answer4El.addEventListener("click", displayIncorrect);
-    answer4El.addEventListener("click", displayQuestion3);
+    answer4El.addEventListener("click", addScore);
 }
 
+var start = function () {
+    displayQuestion1();
+    timer();
+    document.getElementById("startPage").style.display = "none";
+    document.querySelector(".questions").style.display = "block";
+}
 
-startBtn.onclick = timer, displayQuestion1();
+document.getElementById("initials").style.display = "none";
+document.querySelector("#submit").style.display = "none";
+document.querySelector(".questions").style.display = "none";
+console.log(score);
+
+document.querySelector("#startBtn").addEventListener("click", start)
