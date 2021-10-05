@@ -12,11 +12,13 @@ var answerEl = document.querySelector(".answer");
 var rightEl = document.querySelector(".right");
 var scoreEl = document.getElementById("score-page");
 var questions = document.querySelector(".questions");
-var score= 0; 
 var initialEl = document.getElementById("initials");
 var submitEl = document.getElementById("submit")
 var initialArr = [];
+var scoresArr =[];
 var nameEl = document.getElementById("name");
+var timeInterval;
+score = 0;
 
 var startPage = function () {
     document.getElementById("initials").style.display = "none";
@@ -29,23 +31,25 @@ var startPage = function () {
 
 var displayCorrect = function(){
 correctEl.textContent = "Correct :)";
-score = score +2;
+score += 5;
 console.log(score);
 }
 
 var displayIncorrect = function (){
     incorrectEl.textContent = "Incorrect :(";
-    score--;
+    score -= 2;
+    console.log(score);
 }
 
 var saveInitials = function () {
-    var initialInput = document.querySelector("input[name='initial'").value;
-    console.log(initialInput);
-    initialArr.push(initialInput);
-    localStorage.setItem("initials", JSON.stringify(initialArr));
-    document.querySelector(".scores");
-        appendChild("initialInput").text().trim();
+    console.log(initialEl.value);
+    initialArr.push(initialEl);
+    console.log(initialArr);
+    scoresArr.push(score);
+    console.log(scoresArr);
+
 }
+
 
 
 
