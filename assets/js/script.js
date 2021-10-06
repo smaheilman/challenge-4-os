@@ -19,6 +19,7 @@ var scoresArr =[];
 var nameEl = document.getElementById("name");
 var timeInterval;
 score = 0;
+var time = 60;
 
 var startPage = function () {
     document.getElementById("initials").style.display = "none";
@@ -38,20 +39,25 @@ console.log(score);
 var displayIncorrect = function (){
     incorrectEl.textContent = "Incorrect :(";
     score -= 2;
+    time -= 3;
     console.log(score);
 }
 
 var saveInitials = function () {
-    console.log(initialEl.value);
-    initialArr.push(initialEl);
+    initialArr.push(initialEl.value);
     console.log(initialArr);
     scoresArr.push(score);
-    console.log(scoresArr);
 
+    initialArr = initialArr.concat(JSON.parse(localStorage.getItem("initialList")));
+    scoreList = scoreList.concat(JSON.parse(localStorage.getItem("scoresList")));
+
+    localStorage.setItem("initialList", JSON.stringify(initialArr));
+    localStorage.setItem("scoreList", JSON.stringify(scoresArr));
+    console.log(JSON.parse(localStorage.getItem("initialList")));
+    console.log(JSON.parse(localStorage.getItem("scoresList")));
+
+    console.log(initialArr[0]);
 }
-
-
-
 
 const quizQuestions = {
     question1:"1. What symbol is used to create comments in javaScript?",
@@ -83,7 +89,6 @@ const quizQuestions = {
     b5: "2. Slack",
     c5: "3. Stack Overflow",
     d5: "4. VS Code"
-
 }
 
 var timeUp = function() {
@@ -92,12 +97,11 @@ var timeUp = function() {
 }
 
 function timer() {
-    var timeLeft = 60;
 
     var timeInterval = setInterval(function () {
-        if (timeLeft >= 1) {
-            timerEl.textContent = "Time left: " + timeLeft;
-            timeLeft--;
+        if (time >= 1) {
+            timerEl.textContent = "Time left: " + time;
+            time --;
         } 
         else {
             timerEl.textContent = '';
@@ -108,7 +112,7 @@ function timer() {
 }
 
 var stopTimer = function () {
-    clearTimeout(timer);
+   clearTimeout(timer);
 }
 
 var addScore = function () {
@@ -119,13 +123,23 @@ var addScore = function () {
     document.querySelector("#timer").style.display = "none";
     submitEl.addEventListener("click", saveInitials);
     document.querySelector("#submit").style.display = "block";
-    stopTimer;
+    stopTimer();
     document.querySelector("#submit").addEventListener("click", function(event){
         event.preventDefault()
     });
     document.querySelector("#submit").addEventListener("click", saveInitials);
     document.querySelector("#hSBtn").addEventListener("click", highScores);
 }
+
+var remove = function () { 
+    var fun = [displayCorrect, displayIncorrect, displayQuestion1, displayQuestion2, displayQuestion3, displayQuestion4, displayQuestion5]
+    for (let i = 0; i < fun.length; i++){
+        answer1El.removeEventListener("click", fun[i]);
+        answer2El.removeEventListener("click", fun[i]);
+        answer3El.removeEventListener("click", fun[i]);
+        answer4El.removeEventListener("click", fun[i]);
+    }
+};
 
 var displayQuestion1 = function(){
     questionEl.textContent = (quizQuestions.question1);
@@ -143,11 +157,11 @@ var displayQuestion1 = function(){
     answer3El.addEventListener("click", displayQuestion2);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion2);
-
-
 }
 
 var displayQuestion2 = function () {
+
+    remove();
 
     questionEl.textContent = (quizQuestions.question2);
     answer1El.textContent = (quizQuestions.a2);
@@ -163,10 +177,10 @@ var displayQuestion2 = function () {
     answer3El.addEventListener("click", displayQuestion3);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion3);
-
 }
 
 var displayQuestion3 = function () {
+    remove();
 
     questionEl.textContent = (quizQuestions.question3);
     answer1El.textContent = (quizQuestions.a3);
@@ -182,11 +196,11 @@ var displayQuestion3 = function () {
     answer3El.addEventListener("click", displayQuestion4);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion4);
-
-
 }
 
 var displayQuestion4 = function () {
+    remove();
+
     questionEl.textContent = (quizQuestions.question4);
     answer1El.textContent = (quizQuestions.a4);
     answer2El.textContent = (quizQuestions.b4);
@@ -201,11 +215,11 @@ var displayQuestion4 = function () {
     answer3El.addEventListener("click", displayQuestion5);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", displayQuestion5);
-
-    
 }
 
 var displayQuestion5 = function () {
+    remove();
+
     questionEl.textContent = (quizQuestions.question5);
     answer1El.textContent = (quizQuestions.a5);
     answer2El.textContent = (quizQuestions.b5);
@@ -220,8 +234,6 @@ var displayQuestion5 = function () {
     answer3El.addEventListener("click", addScore);
     answer4El.addEventListener("click", displayIncorrect);
     answer4El.addEventListener("click", addScore);
-
-    
 }
 
 var start = function () {
@@ -237,8 +249,26 @@ var highScores = function () {
     document.querySelector("#startPage").style.display = "none";
     document.querySelector(".questions").style.display = "none";
     document.querySelector("#startBtn").style.display = "none";
+    document.querySelector("#score-page").style.display = "none";
     document.querySelector("#close").addEventListener("click", startPage);
     console.log("hi");
+    let initials = ["1." + initialArr[0], "2." + initialArr[1],]
+    let list = document.querySelector(".scores")
+    initials.forEach((item)=> {
+        let li = document.createElement("li");
+        li.innerText= item;
+        list.appendChild(li);
+    });
+
+    let scores = ["1." + scoresArr[0], "2." + scoresArr[1],]
+    let group = document.querySelector(".scoreNum")
+    scores.forEach((item)=> {
+        let li = document.createElement("li");
+        li.innerText= item;
+        group.appendChild(li);
+    });
+    console.log(initialArr);
+    console.log(scoresArr);
 }
 
 document.getElementById("initials").style.display = "none";
