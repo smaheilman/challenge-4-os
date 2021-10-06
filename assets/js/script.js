@@ -160,7 +160,6 @@ var displayQuestion1 = function(){
 }
 
 var displayQuestion2 = function () {
-
     remove();
 
     questionEl.textContent = (quizQuestions.question2);
@@ -276,6 +275,6 @@ document.querySelector("#submit").style.display = "none";
 document.querySelector(".questions").style.display = "none";
 document.querySelector("#highScores").style.display = "none";
 console.log(score);
-document.querySelector("#hSBtn").addEventListener("click", highScores);
 
+document.querySelector("#hSBtn").addEventListener("click", highScores);
 document.querySelector("#startBtn").addEventListener("click", start)
