@@ -49,13 +49,10 @@ var saveInitials = function () {
     scoresArr.push(score);
 
     initialArr = initialArr.concat(JSON.parse(localStorage.getItem("initialList")));
-    scoreList = scoreList.concat(JSON.parse(localStorage.getItem("scoresList")));
+    scoresArr = scoresArr.concat(JSON.parse(localStorage.getItem("scoresList")));
 
     localStorage.setItem("initialList", JSON.stringify(initialArr));
     localStorage.setItem("scoreList", JSON.stringify(scoresArr));
-    console.log(JSON.parse(localStorage.getItem("initialList")));
-    console.log(JSON.parse(localStorage.getItem("scoresList")));
-
     console.log(initialArr[0]);
 }
 
@@ -251,7 +248,7 @@ var highScores = function () {
     document.querySelector("#score-page").style.display = "none";
     document.querySelector("#close").addEventListener("click", startPage);
     console.log("hi");
-    let initials = ["1." + initialArr[0], "2." + initialArr[1],]
+    let initials = ["1. " + initialArr[0], "2. " + initialArr[1], "3. " + initialArr[2], "4. " + initialArr[3], "5. " + initialArr[4]]
     let list = document.querySelector(".scores")
     initials.forEach((item)=> {
         let li = document.createElement("li");
@@ -259,7 +256,7 @@ var highScores = function () {
         list.appendChild(li);
     });
 
-    let scores = ["1." + scoresArr[0], "2." + scoresArr[1],]
+    let scores = [scoresArr[0], scoresArr[1], scoresArr[2], scoresArr[3], scoresArr[4]]
     let group = document.querySelector(".scoreNum")
     scores.forEach((item)=> {
         let li = document.createElement("li");
